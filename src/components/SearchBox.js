@@ -11,9 +11,9 @@ const SearchBox = (props) => {
     };
 
     return (
-        <div className="SearchBox" style={style} >
+        <div className="SearchBox" style={style}>
             <input type="text" onChange={props.handleChange} placeholder = {'Enter a movie title'} />
-            <button type="submit" onClick={props.handleClick} >Search</button>
+            <button type="submit" onClick={props.handleClick} >Find movie locations</button>
         </div>
     );
 };

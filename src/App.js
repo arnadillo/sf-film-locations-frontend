@@ -2,6 +2,9 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 import React, { Component } from 'react';
 import SearchBox from './components/SearchBox';
 
+const { REACT_APP_GOOGLE_API_KEY } = process.env;
+const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
+
 const MapComponent = withScriptjs(withGoogleMap((props) =>
   <div>
     <GoogleMap
@@ -25,7 +28,7 @@ class MapContainer extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({ input: e.target.value });
+    this.setState({ input: e.target.value.toLowerCase() });
   };
 
   handleClick = () => {
@@ -37,18 +40,11 @@ class MapContainer extends Component {
     }).then((result) => {
 
       return result.json().then((data) => {
-
-        console.log('=== Got Data: ', data);
-
         let retrievedLocations = data.Locations;
-
-        console.log('\n\n Locations: ', retrievedLocations);
 
         this.setState({
           markers: retrievedLocations
         });
-
-
       });
 
     });
@@ -60,17 +56,14 @@ class MapContainer extends Component {
 
     markers = (
       <div>
-        { this.state.markers.map((location) => {
-
-          console.log('\n\n === Testing: ', location.location);
-
-          return <Marker
-            position={location.location}
-            label= {location.name}
-          />
-
-        })}
-
+        {
+          this.state.markers.map((location) => {
+            return <Marker
+              position={location.location}
+              label= {location.name}
+            />
+          })
+        }
       </div>
     );
 
@@ -83,7 +76,7 @@ class MapContainer extends Component {
         />
 
         <MapComponent
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNk7in3pRazdod4nels3lv_7ElxZTtzvo&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL= { googleMapsUrl }
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `800px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
