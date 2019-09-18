@@ -1,7 +1,7 @@
-# veerum-challenge-frontend
+# sf-film-locations-frontend
 React application that displays map locations of movies filmed in San Francisco, according to the data set [DataSF:Film Locations](https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am). Markers (with textual labels) are shown upon successful query of a movie title present in the data set.<br><br> Written for the Veerum technical challenge, submitted by Arnold Padillo on August 29, 2019.
 
-**See the repository for the API server of this application for more details: [veerum-challenge-data-server](https://github.com/arnadillo/veerum-challenge-data-server)**
+**See the repository for the API server of this application for more details: [sf-film-locations-server](https://github.com/arnadillo/sf-film-locations-server)**
 
 ## Getting started
 Requires NodeJS `>= v8.14.0` to be installed on your machine.
@@ -9,7 +9,7 @@ Requires NodeJS `>= v8.14.0` to be installed on your machine.
 **This application also depends on the `REACT_APP_GOOGLE_API_KEY` env var being loaded, carrying a google api key.**
 
 ```
-$> cd veerum-challenge-frontend
+$> cd sf-film-locations-frontend
 $> npm install
 $> npm start
 ```
@@ -19,7 +19,7 @@ The application will occupy port number 3000, and a successful startup is repres
 ```
 Compiled successfully!
 
-You can now view veerum-challenge-frontend in the browser.
+You can now view sf-film-locations-frontend in the browser.
 
   Local:            http://localhost:3000/
   On Your Network:  http://<ip-address>:3000/
@@ -35,7 +35,7 @@ Shortly after, your browser should open with the application.
 
 
 ## High-level approach
-For this React App, I leveraged the `react-google-maps` library to display an interactive map, centering on San Francisco on app start-up. On user input submission, the `/locations` API at [veerum-challenge-data-server](https://github.com/arnadillo/veerum-challenge-data-server) is queried with the input string, assuming that it is a movie title from the dataset. Input is normalized via `.toLowerCase()` so that finding the data is a case-insensitive operation.
+For this React App, I leveraged the `react-google-maps` library to display an interactive map, centering on San Francisco on app start-up. On user input submission, the `/locations` API at [sf-film-locations-server](https://github.com/arnadillo/sf-film-locations-server) is queried with the input string, assuming that it is a movie title from the dataset. Input is normalized via `.toLowerCase()` so that finding the data is a case-insensitive operation.
 
 If the API endpoint responds with location data for the input, the state of the app is changed to absorb the model and populate the map with markers that are positioned based on the geographical coordinates obtained by the API response, for the particular movie queried. Else, we have no data to work with and nothing is displayed.
 
