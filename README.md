@@ -31,7 +31,7 @@ To create a production build, use npm run build.
 Shortly after, your browser should open with the application.
 
 ## See it in action
-[Screencast](https://www.screencast.com/t/EuLJLjhM1G1)
+[Screencast](https://app.screencast.com/PXKXUp9787rSG)
 
 
 ## High-level approach
